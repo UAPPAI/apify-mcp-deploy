@@ -1,8 +1,6 @@
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server, StdioServerTransport } from '@modelcontextprotocol/sdk';
 import { ApifyClient } from 'apify-client';
 
-// Initialize Apify client
 const client = new ApifyClient({
   token: process.env.APIFY_API_TOKEN,
 });
