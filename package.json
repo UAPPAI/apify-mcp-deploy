@@ -2,10 +2,13 @@
   "name": "apify-mcp-deploy",
   "version": "1.0.0",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "latest",
-    "apify-client": "latest"
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "apify-client": "^2.9.0"
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
