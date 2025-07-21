@@ -4,7 +4,7 @@ const { ApifyClient } = require('apify-client');
 
 // Initialize Apify client
 const client = new ApifyClient({
-    token: process.env.APIFY_API_TOKEN,
+  token: process.env.APIFY_API_TOKEN,
 });
 
 // Create MCP server with proper initialization
@@ -20,7 +20,7 @@ const server = new Server(
   }
 );
 
-// Define tools properly
+// Define tools
 const tools = [
   {
     name: 'scrape_website',
@@ -30,13 +30,24 @@ const tools = [
       properties: {
         url: {
           type: 'string',
-          description: 'The URL to scrape'
-        }
+          description: 'The URL to scrape',
+        },
       },
-      required: ['url']
-    }
-  }
+      required: ['url'],
+    },
+  },
 ];
 
-// Handle tool listing
-server.setRequestHandler('tools/lis
+// Handler function to return tools list
+const handlerFunction = async () => {
+  return {
+    status: 200,
+    body: tools,
+  };
+};
+
+// Register the handler for 'tools/list'
+server.setRequestHandler('tools/list', handlerFunction);
+
+// Start server
+server.listen(new StdioServerTransport());
