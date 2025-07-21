@@ -1,13 +1,13 @@
-const { Server } = require('@modelcontextprotocol/sdk/server/index.js');
-const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
-const { ApifyClient } = require('apify-client');
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { ApifyClient } from 'apify-client';
 
 // Initialize Apify client
 const client = new ApifyClient({
   token: process.env.APIFY_API_TOKEN,
 });
 
-// Create MCP server with proper initialization
+// Create MCP server
 const server = new Server(
   {
     name: 'apify-server',
@@ -38,7 +38,7 @@ const tools = [
   },
 ];
 
-// Handler function to return tools list
+// Handler for listing tools
 const handlerFunction = async () => {
   return {
     status: 200,
@@ -46,8 +46,5 @@ const handlerFunction = async () => {
   };
 };
 
-// Register the handler for 'tools/list'
 server.setRequestHandler('tools/list', handlerFunction);
-
-// Start server
 server.listen(new StdioServerTransport());
