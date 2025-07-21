@@ -1,0 +1,7 @@
+{
+  "name": "apify-mcp-deploy",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx -y @modelcontextprotocol/server-apify"
+  }
+}
